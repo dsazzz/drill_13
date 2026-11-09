@@ -3,14 +3,17 @@ import game_framework
 
 
 selected_item = 0
+image = None
 
 
 def init():
-    pass
+    global image
+    image = load_image('item_select.png')
 
 
 def finish():
-    pass
+    global image
+    del image
 
 
 def update():
@@ -19,6 +22,7 @@ def update():
 
 def render():
     clear_canvas()
+    image.draw(400, 300)
     update_canvas()
 
 
