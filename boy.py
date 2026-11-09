@@ -6,6 +6,7 @@ from sdl2 import (SDL_KEYDOWN, SDL_KEYUP, SDLK_LEFT, SDLK_RIGHT,
 from transitions import Machine
 
 import game_world
+import item_mode
 from ball import Ball
 
 
@@ -47,7 +48,11 @@ class Boy:
         self.frame = 0
 
     def fire_ball(self):
-        ball = Ball(self.x, self.y, self.face_dir * 10)
+        if item_mode.selected_item == 0:
+            return
+
+        ball = Ball(self.x, self.y, self.face_dir * 10,
+                    item_mode.selected_item)
         game_world.add_oject(ball)
 
     def handle_event(self, event):

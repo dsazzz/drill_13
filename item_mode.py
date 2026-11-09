@@ -2,6 +2,9 @@ from pico2d import *
 import game_framework
 
 
+selected_item = 0
+
+
 def init():
     pass
 
@@ -20,6 +23,8 @@ def render():
 
 
 def handle_events():
+    global selected_item
+
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -27,6 +32,9 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.pop_mode()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_i:
+            game_framework.pop_mode()
+        elif event.type == SDL_KEYDOWN and event.key in (SDLK_0, SDLK_1, SDLK_2):
+            selected_item = event.key - SDLK_0
             game_framework.pop_mode()
 
 
